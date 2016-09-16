@@ -109,3 +109,36 @@ svg {
   cursor: pointer;
 }
 
+/* HISTORICAL DATA COMPONENT STYLES */
+.dateLabel {
+  font-size: 16px;
+  /*margin-right: 20px;*/
+}
+.form-group {
+  margin-top: 10px;
+}
+.dateForm {
+  /*position: absolute;*/ 
+  margin-left: 10px;
+  margin-right: 40px;
+  width: 40px;
+}
+
+/*#resultsBox {
+  float: right;
+  height: 60px;
+  width: 300px;
+  background-color: green;
+
+}*/
+
+#resultsText {
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+
+
+
+
+
