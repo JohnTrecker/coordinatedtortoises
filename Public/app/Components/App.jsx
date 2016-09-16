@@ -26,14 +26,13 @@ class App extends React.Component {
     };
   }
 
-
   //componenetDidMount is called once for the very first render
   componentDidMount() {
     console.log('It mounted: ', this.props);
 
     //Set state must be async? When passing this.state instead of data it the old defaults
     this.getPrefs((data) => {
-      console.log(JSON.parse(data));
+      // console.log(JSON.parse(data));
       this.setState(JSON.parse(data));
       this.props.graph.init(JSON.parse(data));
     });
@@ -41,6 +40,7 @@ class App extends React.Component {
 
   //Used to visually display a successful save
   synced() {
+    console.log(this);
     this.setState({
       synced: true
     });
@@ -59,15 +59,16 @@ class App extends React.Component {
 
   //AJAX Methods
   savePrefs(callback) {
-    console.log('Saving prefs now', this.state);
-
     var context = this;
 
     $.ajax({
       url: 'http://localhost:3000/users/preferences',
       method: 'POST',
       data: JSON.stringify(this.state),
-      success: (data) => callback(data),
+      success: (data) => {
+        callback(data);
+        console.log('Prefs saved!');
+      },
       error: (error) => console.log('An error occurred!: ', error)
     });
   }
@@ -133,15 +134,36 @@ class App extends React.Component {
     this.props.graph.updateRes(res);
   }
 
+  logout() {
+    console.log('Closing websocket connections on logout ... ');
+    sockets.forEach( socket => { socket.close(); });
+  }
 
   //Renders the graph to the page
   //Along with the buttons which define preferences
   render() {
     return (
       <div className="target">
-        <div className="col-md-4">    
-          <NavBar logout={this.logout} savePrefs={this.savePrefs.bind(this)} synced={this.synced.bind(this)} syncState={this.state.synced} />
+        <NavBar logout={this.logout} savePrefs={this.savePrefs.bind(this)} synced={this.synced.bind(this)} syncState={this.state.synced} />
+        
+        <div className="col-md-4">
+          <div className="panel panel-primary height-full">
+            <div className="panel-heading"> Your Crypto-currency Dashboard</div>
+            <div className="panel-body">
+              <TxMaker />
+              <div className="btn-group-vertical" role="group" aria-label="...">
+                <span className="text"> 
+                  Try interacting with the ticker graphs on the right! In your account, you can customize your 
+                  dashboard view any way you like, and save those preferences so that you see them each time you log in. 
+                </span>
+              </div>
+            </div>
+            <div className="panel-footer">
+              Made at Hack Reactor by Nick, Pete, Clarabelle, and Julian
+            </div>
+          </div>    
         </div>
+
         <div className="col-md-8">    
           <Main currencies={this.props.currencies} currencyState={this.state.currency.text} resState={this.state.resolution.text} currHandler={this.currencyHandler.bind(this)} resHandler={this.resHandler.bind(this)}/>
           <HistoricalData />
