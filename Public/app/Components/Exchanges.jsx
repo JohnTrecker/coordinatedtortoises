@@ -47,6 +47,7 @@ class Exchanges extends React.Component {
     window.updateExchangeRates();
     setInterval(function(){
       console.log('updated exchange rates');
+      $('.exRates').empty();
       window.updateExchangeRates();
     }, 1000 * 60 * 1);
   }
