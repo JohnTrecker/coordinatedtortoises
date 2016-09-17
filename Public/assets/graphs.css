@@ -67,3 +67,11 @@ footer {
   margin: 0 auto;
   text-align: center;
 }
+
+.txWindow {
+  position: absolute;
+  color: #353636;
+  font-size: 14px;
+  left: 2%;
+  top: 35%;
+}

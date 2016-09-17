@@ -26,7 +26,7 @@ var newStream = function(transaction) {
     result.amount += sent.value / 100000000;
   });
 
-  result.time = transaction.time * 1000
+  result.time = transaction.time * 1000;
   return result;
 };
 
@@ -48,7 +48,7 @@ server.newConnection(function(ws) {
   console.log('New Connection');
 
   var tenMinutesAgo = Date.now() - 60 * 10 * 1000;
-
+  // db is not defined anywhere
   // db.readHistoricalData('bitcoinData', tenMinutesAgo, function(err, results) {
   //   if (err) {
   //     console.log(err);
@@ -58,6 +58,6 @@ server.newConnection(function(ws) {
   //   console.log(ws.readyState);
   // });
 
-  console.log('Blockchain is up');
+  // console.log('Blockchain is up');
 });
 
