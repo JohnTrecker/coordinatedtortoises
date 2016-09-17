@@ -111,7 +111,7 @@ svg {
 
 /* HISTORICAL DATA COMPONENT STYLES */
 .dateLabel {
-  font-size: 16px;
+  font-size: 14px;
   /*margin-right: 20px;*/
 }
 .form-group {
@@ -124,17 +124,19 @@ svg {
   width: 40px;
 }
 
-/*#resultsBox {
-  float: right;
-  height: 60px;
-  width: 300px;
-  background-color: green;
-
-}*/
+#resultsBox {
+  /*float: right;*/
+  /*height: 80px;*/
+  /*width: 300px;*/
+  /*border: 1px solid green;*/
+  margin-left: 26%;
+  position: absolute;
+}
 
 #resultsText {
-  font-size: 30px;
+  font-size: 56px;
   margin-left: 20px;
+  color: green;
 }
 
 
