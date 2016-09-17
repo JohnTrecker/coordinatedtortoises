@@ -2,26 +2,26 @@
 // new Bitstamp-ws data stream
 // ============================
 
-var Bitstamp = require('bitstamp-ws');
+// var Bitstamp = require('bitstamp-ws');
 
-var ws = new Bitstamp({
-  // force encrypted socket session
-  encrypted: true,
+// var ws = new Bitstamp({
+//   // force encrypted socket session
+//   encrypted: true,
 
-  // BTC/USD market:
-  live_trades: true,
-  order_book: true,
-  diff_order_book: true,
+//   // BTC/USD market:
+//   live_trades: true,
+//   order_book: true,
+//   diff_order_book: true,
 
-  // BTC/EUR market:
-  live_trades_btceur: false,
-  order_book_btceur: false,
-  diff_order_book_btceur: false
-});
+//   // BTC/EUR market:
+//   live_trades_btceur: false,
+//   order_book_btceur: false,
+//   diff_order_book_btceur: false
+// });
 
-ws.on('data', function(data) {
-  console.log('new order book event:', data);
-});
+// ws.on('data', function(data) {
+//   console.log('new order book event:', data);
+// });
 
 
 // ============================

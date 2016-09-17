@@ -86,6 +86,16 @@ class TxValueByNetwork extends React.Component {
       }
       
       tempDB[eventData.name] += +eventData.amount;
+      
+      if (typeof eventData.amount === 'string') {
+        eventData.amount = +eventData.amount;
+      }
+      // append event to txWindow
+      var $txMessage = $('<div></div>');
+      var txMessageText = eventData.name.toUpperCase() + ': ' + eventData.amount.toFixed(5) + 'Ƀ';
+      $txMessage.text(txMessageText);
+      $('.txWindow').prepend($txMessage);
+      $($txMessage).fadeOut(3000);
 
       makeBubbles(tempDB);
     };

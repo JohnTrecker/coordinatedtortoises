@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha specs/*.js",
-    "start": "babel ./Public --out-dir ./Public/compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline && node server/index.js"
+    "start": "babel ./Public --out-dir ./Public/compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline && node server/index.js",
+    "watch": "babel --watch ./Public --out-dir ./Public/compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline && node server/index.js",
+    "server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
