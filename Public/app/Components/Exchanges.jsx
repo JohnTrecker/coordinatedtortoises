@@ -4,7 +4,6 @@ class Exchanges extends React.Component {
     //Short hand for calling React.component.call(props)
     super(props);
 
-
     //State defaults
     this.state = {
 

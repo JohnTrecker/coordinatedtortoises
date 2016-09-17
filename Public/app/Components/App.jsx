@@ -33,8 +33,8 @@ class App extends React.Component {
     //Set state must be async? When passing this.state instead of data it the old defaults
     this.getPrefs((data) => {
       // console.log(JSON.parse(data));
-      this.setState(JSON.parse(data));
-      this.props.graph.init(JSON.parse(data));
+      // this.setState(JSON.parse(data));
+      // this.props.graph.init(JSON.parse(data));
     });
   }
 
@@ -161,6 +161,7 @@ class App extends React.Component {
         <div className="col-md-8">    
           <Main currencies={this.props.currencies} currencyState={this.state.currency.text} resState={this.state.resolution.text} currHandler={this.currencyHandler.bind(this)} resHandler={this.resHandler.bind(this)}/>
           <WorldMap />
+          <HistoricalData />
           <Transactions />
           <Exchanges currencies={this.props.currencies} currHandler={this.currencyHandler.bind(this)} currencyState={this.state.currency.text}/>
         </div>
