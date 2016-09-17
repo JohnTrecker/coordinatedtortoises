@@ -1,7 +1,11 @@
 class TxMaker extends React.Component {
   //Upon render, it adds click handlers to two buttons
-      
+  constructor(props) {
+    super(props);
+  }  
+
   componentDidMount() {
+  // TODO: replace data.history with props.history 
     var data = {};
     data['history'] = [];
 
@@ -52,10 +56,7 @@ class TxMaker extends React.Component {
       } else {
         data['amount'] = $('#amount').val();
         data['history'].push(data['amount'] + ' BTC');
-      }
-      
-      console.log(data['amount']);
-      console.log(data['history']);      
+      }    
 
       //If it's ok to send the data, it sends it to the server and builds it and pushes it to the blockchain
       if(shouldSend){ 

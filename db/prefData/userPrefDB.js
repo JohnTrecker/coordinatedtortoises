@@ -39,7 +39,8 @@ var userDefaults = {
       symbol: 'BTC'
     }
   },
-  synced: false
+  synced: false,
+  history: []
 };
 
 usersModel(sequelize);
@@ -133,7 +134,8 @@ var newUser = function(username, password, callback) {
           username: username,
           password: hashP,
           salt: salt,
-          preferences: JSON.stringify(userDefaults)        }
+          preferences: JSON.stringify(userDefaults)
+        }
       }).then(callback);
     });
   });
