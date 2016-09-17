@@ -22,7 +22,7 @@ var sequelize = new Sequelize(url, {
   }
 });
 
-//sequelize.drop();
+// sequelize.drop();
 
 var userDefaults = {
   currency: {
@@ -133,8 +133,7 @@ var newUser = function(username, password, callback) {
           username: username,
           password: hashP,
           salt: salt,
-          preferences: JSON.stringify(userDefaults)
-        }
+          preferences: JSON.stringify(userDefaults)        }
       }).then(callback);
     });
   });

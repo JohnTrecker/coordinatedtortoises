@@ -1,13 +1,18 @@
 class TxMaker extends React.Component {
   //Upon render, it adds click handlers to two buttons
+      
   componentDidMount() {
+    var data = {};
+    data['history'] = [];
+
     $('.sendTx').on('click', function(){
       //Empties out previous results from the last transaction.
       $('#results').empty();
-      var data = {};
+      
       //The data is what we're sending to the server
-      var shouldSend = true;
+
       //Should Send is only true if we end up with valid data to send
+      var shouldSend = true;
       
       //If the transaction id is empty, we can't send it, so it adds an error class to that input
       if($('#inputTxId').val() !== ''){
@@ -38,19 +43,25 @@ class TxMaker extends React.Component {
         $('#pkDiv').addClass('has-error');
       }
 
+
       //Sets default amount to 0
-      if (typeof $('#amount').val() !== 'number') {
+      data['amount'] = $('#amount').val() === '' ? 0 : $('#amount').val();
+
+      if ($('#amount').val() === '') {
         data['amount'] = 0;
       } else {
         data['amount'] = $('#amount').val();
+        data['history'].push(data['amount'] + ' BTC');
       }
       
+      console.log(data['amount']);
+      console.log(data['history']);      
 
       //If it's ok to send the data, it sends it to the server and builds it and pushes it to the blockchain
       if(shouldSend){ 
-        $.post('http://localhost:3000/txmake', data, function(tx){ 
-          $('#results').append('<span class="bg-success">' + tx + '</span>');
-        });
+        /*$.post('http://localhost:3000/txmake', data, function(tx){ 
+          */$('#results').append('<span class="bg-success">' + /*tx*/data['amount'] + " BTC Sent" + '</span>');
+        /*});*/
       } else {
         $('#results').append('<span class="bg-danger">Please Fill out All Fields</span>');
       }
@@ -60,15 +71,11 @@ class TxMaker extends React.Component {
     $('.pastTx').on('click', function(){
       //Empties out previous results from the last transaction.
       $('#results').empty();
-      var shouldSend = false;
-
-      // query the db
-      // return user.history.data.amount
-      // if 
+      var shouldSend = data['history'].length === 0 ? false : true;
       
       if(shouldSend){ 
-        $.post('http://localhost:3000/txmake', data, function(tx){ 
-          $('#results').append('<span class="bg-success">' + tx + '</span>');
+        data['history'].forEach(function(tx) {
+          $('#results').append('<span class="bg-success">' + tx + '</span><br/>');
         });
       } else {
         $('#results').append('<span class="bg-danger">You Have No Transaction History</span>');
