@@ -75,7 +75,7 @@ class TxMaker extends React.Component {
       
       if(shouldSend){ 
         data['history'].forEach(function(tx) {
-          $('#results').append('<span class="bg-success">' + tx + '</span><br/>');
+          $('#results').append('<br/><span class="bg-success">' + tx + '</span>');
         });
       } else {
         $('#results').append('<span class="bg-danger">You Have No Transaction History</span>');
