@@ -158,7 +158,7 @@ class App extends React.Component {
           <div className="panel panel-primary height-full">
             <div className="panel-heading"> Cryptocurrency Dashboard</div>
             <div className="panel-body">
-              <TxMaker history={this.state.history} savePrefs={this.savePrefs.bind(this)} getPrefs={this.getPrefs.bind(this)}/>
+              <TxMaker history={this.state.history} savePrefs={this.savePrefs.bind(this)}/>
             </div>
             <div className="panel-footer">
               Made with <img src="./assets/heart.png" height="5" width="5"/> at Hack Reactor.

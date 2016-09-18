@@ -44,14 +44,7 @@ var userDefaults = {
 };
 
 usersModel(sequelize);
-//Localhost settings
-// var database = 'userPrefs';
-// var opts = {
-//   user: 'def',
-//   database: database,
-//   protocol: 'postgres',
-//   query:    {pool: true}
-// };
+
 var findAll = function(model, callback) {
   model.findAll({}).then(callback);
 };
@@ -162,17 +155,6 @@ var savePref = function(username, preferences, callback) {
     }
   }).then(callback);
 };
-// add(user, {id:3, username:'stevo', password:'pass'}, console.log);
-// findAll(user, function(user){
-//   console.log(user[1].dataValues);
-
-// add(users, {id:3, username:'stevo', password:'pass'}, console.log);
-// findAll(users, function(users){
-//   console.log(users[1].dataValues);
-// });
-// deleteAll(user, console.log);
-
-//newUser('ti', 'p', console.log);
 
 
 module.exports = {

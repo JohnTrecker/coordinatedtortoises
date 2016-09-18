@@ -1,11 +1,9 @@
 class TxMaker extends React.Component {
   //Upon render, it adds click handlers to two buttons
-  constructor(props) {
-    super(props);
-  }  
 
   componentDidMount() {
   // TODO: replace data.history with props.history 
+    console.log('------------------- PROPS -------------', props);
     var data = {};
     data['history'] = [];
 
@@ -68,7 +66,6 @@ class TxMaker extends React.Component {
       }
     });
 
-    // VERIFY CLASS NAME
     $('.pastTx').on('click', function(){
       //Empties out previous results from the last transaction.
       $('#results').empty();
