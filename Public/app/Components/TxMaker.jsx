@@ -1,11 +1,13 @@
 class TxMaker extends React.Component {
-  //Upon render, it adds click handlers to two buttons
+  constructor(props) {
+    super(props);
+  }
 
+  //Upon render, it adds click handlers to two buttons
   componentDidMount() {
-  // TODO: replace data.history with props.history 
-    console.log('------------------- PROPS -------------', props);
+    
     var data = {};
-    data['history'] = [];
+    var props = this.props;
 
     $('.sendTx').on('click', function(){
       //Empties out previous results from the last transaction.
@@ -51,16 +53,23 @@ class TxMaker extends React.Component {
 
       if ($('#amount').val() === '') {
         data['amount'] = 0;
+        shouldSend = false;
       } else {
         data['amount'] = $('#amount').val();
-        data['history'].push(data['amount'] + ' BTC');
       }    
 
       //If it's ok to send the data, it sends it to the server and builds it and pushes it to the blockchain
       if(shouldSend){ 
+        // update state
+        props.updateHistory(data['amount']);
+        // update prefs
+        props.savePrefs();
+        // confirm transaction amount
+        $('#results').append('<span class="bg-success">' + data['amount'] + " BTC Sent" + '</span>');
+        
         /*$.post('http://localhost:3000/txmake', data, function(tx){ 
-          */$('#results').append('<span class="bg-success">' + /*tx*/data['amount'] + " BTC Sent" + '</span>');
-        /*});*/
+          $('#results').append('<span class="bg-success">' + tx + " BTC Sent" + '</span>');
+        });*/
       } else {
         $('#results').append('<span class="bg-danger">Please Fill out All Fields</span>');
       }
@@ -69,10 +78,11 @@ class TxMaker extends React.Component {
     $('.pastTx').on('click', function(){
       //Empties out previous results from the last transaction.
       $('#results').empty();
-      var shouldSend = data['history'].length === 0 ? false : true;
+      var transactions = props.history;
+      var shouldSend = transactions === 0 ? false : true;
       
       if(shouldSend){ 
-        data['history'].forEach(function(tx) {
+        transactions.forEach(function(tx) {
           $('#results').append('<br/><span class="bg-success">' + tx + '</span>');
         });
       } else {

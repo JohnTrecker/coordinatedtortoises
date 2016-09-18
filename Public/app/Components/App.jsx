@@ -67,7 +67,7 @@ class App extends React.Component {
       method: 'POST',
       data: JSON.stringify(this.state),
       success: (data) => {
-        callback(data);
+        if (callback) { callback(data); }
         console.log('Prefs saved!');
       },
       error: (error) => console.log('An error occurred!: ', error)
@@ -134,11 +134,12 @@ class App extends React.Component {
   }
 
   //Handles transaction history update
-  TxHistoryHandler(tx) {
-    console.log(this, tx);
+  updateHistory(tx) {
+    var newHistory = this.state.history;
+    newHistory.push(tx);
 
     this.setState({
-      history: this.history.push(tx)
+      history: newHistory
     });
   }
 
@@ -158,7 +159,7 @@ class App extends React.Component {
           <div className="panel panel-primary height-full">
             <div className="panel-heading"> Cryptocurrency Dashboard</div>
             <div className="panel-body">
-              <TxMaker history={this.state.history} savePrefs={this.savePrefs.bind(this)}/>
+              <TxMaker history={this.state.history} updateHistory={this.updateHistory.bind(this)} savePrefs={this.savePrefs.bind(this)}/>
             </div>
             <div className="panel-footer">
               Made with <img src="./assets/heart.png" height="5" width="5"/> at Hack Reactor.
