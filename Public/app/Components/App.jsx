@@ -22,7 +22,8 @@ class App extends React.Component {
           symbol: 'BTC'
         }
       },
-      synced: false
+      synced: false,
+      history: []
     };
   }
 
@@ -66,7 +67,7 @@ class App extends React.Component {
       method: 'POST',
       data: JSON.stringify(this.state),
       success: (data) => {
-        callback(data);
+        if (callback) { callback(data); }
         console.log('Prefs saved!');
       },
       error: (error) => console.log('An error occurred!: ', error)
@@ -122,8 +123,6 @@ class App extends React.Component {
 
   //Handles how long into the past we are seeing
   resHandler(res) {
-    console.log(this, res);
-
     this.setState({
       resolution: {
         text: 'Resolution: ' + res + 'min',
@@ -132,6 +131,16 @@ class App extends React.Component {
     });
 
     this.props.graph.updateRes(res);
+  }
+
+  //Handles transaction history update
+  updateHistory(tx) {
+    var newHistory = this.state.history;
+    newHistory.push(tx);
+
+    this.setState({
+      history: newHistory
+    });
   }
 
   logout() {
@@ -150,7 +159,7 @@ class App extends React.Component {
           <div className="panel panel-primary height-full">
             <div className="panel-heading"> Cryptocurrency Dashboard</div>
             <div className="panel-body">
-              <TxMaker />
+              <TxMaker history={this.state.history} updateHistory={this.updateHistory.bind(this)} savePrefs={this.savePrefs.bind(this)}/>
             </div>
             <div className="panel-footer">
               Made with <img src="./assets/heart.png" height="5" width="5"/> at Hack Reactor.
