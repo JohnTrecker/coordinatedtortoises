@@ -78,7 +78,7 @@ class TxMaker extends React.Component {
     $('.pastTx').on('click', function(){
       //Empties out previous results from the last transaction.
       $('#results').empty();
-      var transactions = props.history;
+      var transactions = props.getPrefs;
       var shouldSend = transactions === 0 ? false : true;
       
       if(shouldSend){ 
