@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: Nick Olszowy
-  - __Scrum Master__: Clarabelle Cheng-Yue
-  - __Development Team Members__: Julian Knodt, Peter Herbert
+  - __Product Owners__: Nick Olszowy, John Trecker
+  - __Scrum Masters__: Clarabelle Cheng-Yue, Lorenzo Engelen
+  - __Development Team Members__: Julian Knodt, Peter Herbert, Joseph Yu, Caroline Shea
 
 ## Table of Contents
 
